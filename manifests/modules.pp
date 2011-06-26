@@ -1,3 +1,3 @@
 import "base"
 import "puppet"
-#import 
+import "ircbot" 
