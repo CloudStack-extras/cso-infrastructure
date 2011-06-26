@@ -1,0 +1,3 @@
+node basenode {
+	include base
+}
