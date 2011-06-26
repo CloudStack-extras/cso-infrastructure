@@ -6,8 +6,8 @@ class ircbot {
 		ensure => present,
 		name => "bot",
 		}
-	exec { "/usr/bin/supybot /home/bot/cloudbot.conf":
-		unless => "lsof | grep cloudbot.conf",
+	exec { "nohup /usr/bin/supybot /home/bot/cloudbot.conf &":
+		unless => "lsof /home/bot/logs/messages.log",
 		user => "bot",
 	} 
 
