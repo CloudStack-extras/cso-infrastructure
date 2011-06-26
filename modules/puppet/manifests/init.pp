@@ -11,5 +11,11 @@ class puppet {
 class puppet::master {
 	package {puppet-server: ensure => present}
 
+	service {puppetmaster:
+		ensure => running, 
+		hasstatus => true,
+		enable => true,
+	}
+
 }
 
