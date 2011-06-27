@@ -46,12 +46,12 @@ class ircbot {
                 require => File["/home/bot"],
         }
 
-        file { "/home/bot/plugins":
-                ensure => directory,
-                owner => "bot",
-                group => "bot",
-                require => File["/home/bot"],
-        }
+	file { "/home/bot/plugins":
+		ensure => directory,
+		owner => "bot",
+		group => "bot",
+		require => File["/home/bot/"],
+	}
 
         file { "/home/bot/tmp":
                 ensure => directory,
@@ -60,6 +60,13 @@ class ircbot {
                 require => File["/home/bot"],
         }
 
-
+        file { "/home/bot/plugins/Bugzilla" :
+                ensure => directory,
+                source => "puppet://puppet/ircbot/Bugzilla",
+                recurse => inf,
+                purge => true,
+                force => true,
+                require => File["/home/bot/plugins"],
+        }
 
 }
