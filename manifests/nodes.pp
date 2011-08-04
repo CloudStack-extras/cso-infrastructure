@@ -6,3 +6,6 @@ node 'puppet' inherits basenode {
 }
 
 
+node 'demo4-cp.sjc.vmops.com' inherits basenode {
+
+}
