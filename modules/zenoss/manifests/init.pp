@@ -18,15 +18,15 @@ class zenoss {
 
 	service { zenoss:
 		ensure => running,
+		enable => true,
 		hasstatus => true,
-		enabled => true, 
 		require => Package[zenoss],
 	}
 
 	service { mysqld: 
 		ensure => running,
 		hasstatus => true,
-		enabled => true, 
+		enable => true, 
 		require => Package[zenoss],
 	}
 }
