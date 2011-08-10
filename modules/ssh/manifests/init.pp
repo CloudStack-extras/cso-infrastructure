@@ -16,7 +16,7 @@ class ssh {
 		mode => 600,
 		owner => root,
 		group => root,
-		source => "puppet://puppet/ssh/config",
+		source => "puppet://puppet/ssh/sshd_config",
 	}
 
 	file { banner:
