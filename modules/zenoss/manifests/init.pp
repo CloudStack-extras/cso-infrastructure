@@ -13,7 +13,6 @@ class zenoss {
 
 	package { zenoss-core-zenpacks:
 		ensure => "3.1.0-1031",
-		require => Yumrepo[zenoss],
 		require => Package[zenoss],
 	}
 
