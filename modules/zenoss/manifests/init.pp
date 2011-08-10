@@ -21,7 +21,6 @@ class zenoss {
 		hasstatus => true,
 		enabled => true, 
 		require => Package[zenoss],
-		require => Service[mysqld],
 	}
 
 	service { mysqld: 
