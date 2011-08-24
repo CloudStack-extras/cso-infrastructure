@@ -12,9 +12,9 @@ class cloudstack {
                 }
                 fedora : {
                         yumrepo{"Cloudstack":
-                                baseurl => "http://yumrepo/repositories/fedora/$operatingsystemrelease/stable-2.2/oss/",
+                                baseurl => "http://192.168.203.177/foo/",
                                 name => "CloudStack",
-                                enable => 1,
+                                enabled => 1,
                                 gpgcheck => 0,
                 	}
 
