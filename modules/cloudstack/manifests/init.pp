@@ -23,6 +23,9 @@ class cloudstack {
 	}
         file { "/etc/sudoers":
                 source =>  "puppet://puppet/cloudstack/sudoers",
+		mode => 440,
+		owner => root,
+		group => root,
         }
 
 ######### DEFINITIONS ####################
