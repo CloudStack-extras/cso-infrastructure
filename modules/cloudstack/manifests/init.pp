@@ -73,67 +73,67 @@ class cloudstack::nfs-common {
 
 	iptables {"udp111":
 		proto => "udp",
-		port => "111",
+		ddport=> "111",
 		jump => "ACCEPT",
 	}
 
 	iptables {"tcp111":
 		proto => "tcp",
-		port  => "111",
+		ddport => "111",
 		jump => "ACCEPT",
 	}
 
         iptables {"tcp2049":
                 proto => "tcp",
-                port  => "2049",
+                ddport => "2049",
                 jump => "ACCEPT",
         }		
 
         iptables {"tcp32803":
                 proto => "tcp",
-                port  => "32803",
+                ddport => "32803",
                 jump => "ACCEPT",
         }
 
         iptables {"udp32769":
                 proto => "udp",
-                port  => "32769",
+                ddport => "32769",
                 jump => "ACCEPT",
         }
 
         iptables {"tcp892":
                 proto => "tcp",
-                port  => "892",
+                ddport => "892",
                 jump => "ACCEPT",
         }
 
         iptables {"udp892":
                 proto => "udp",
-                port  => "892",
+                dport => "892",
                 jump => "ACCEPT",
         }
 
         iptables {"tcp875":
                 proto => "tcp",
-                port  => "875",
+                dport => "875",
                 jump => "ACCEPT",
         }
 
         iptables {"udp875":
                 proto => "udp",
-                port  => "875",
+                dport => "875",
                 jump => "ACCEPT",
         }
 
         iptables {"tcp662":
                 proto => "tcp",
-                port  => "662",
+                dport => "662",
                 jump => "ACCEPT",
         }
 
         iptables {"udp662":
                 proto => "udp",
-                port  => "662",
+                dport => "662",
                 jump => "ACCEPT",
         }
 	
@@ -244,31 +244,31 @@ class cloudstack::mgmt {
 
 	iptables { "http":
 		proto => "tcp",
-		dport => "80",
+		dport=> "80",
 		jump => "ACCEPT",
 	}
 
 	iptables { "http-alt":
 		proto => "tcp",
-		dport => "8080",
+		dport=> "8080",
 		jump => "ACCEPT",
 		}
 
-	iptables { "port-8096":      ###### find out what this port does in cloudstack
+	iptables { "port-8096":      ###### find out what this dportdoes in cloudstack
 		proto => "tcp",
-		dport => "8096",
+		dport=> "8096",
 		jump => "ACCEPT",
 		}
 
 	iptables { "port-8250":     ############ Think this is for cpvm, but check for certain. 
 		proto => "tcp",
-		dport => "8250",
+		dport=> "8250",
 		jump => "ACCEPT",
 		}
 
 	iptables { "port-9090":    ####################### find out what this does in cloudstack
 		proto => "tcp",
-		dport => "9090",
+		dport=> "9090",
 		jump => "ACCEPT",
 		}
 
