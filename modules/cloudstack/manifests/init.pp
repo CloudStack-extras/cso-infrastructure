@@ -73,37 +73,37 @@ class cloudstack::nfs-common {
 
 	iptables {"udp111":
 		proto => "udp",
-		ddport=> "111",
+		dport=> "111",
 		jump => "ACCEPT",
 	}
 
 	iptables {"tcp111":
 		proto => "tcp",
-		ddport => "111",
+		dport => "111",
 		jump => "ACCEPT",
 	}
 
         iptables {"tcp2049":
                 proto => "tcp",
-                ddport => "2049",
+                dport => "2049",
                 jump => "ACCEPT",
         }		
 
         iptables {"tcp32803":
                 proto => "tcp",
-                ddport => "32803",
+                dport => "32803",
                 jump => "ACCEPT",
         }
 
         iptables {"udp32769":
                 proto => "udp",
-                ddport => "32769",
+                dport => "32769",
                 jump => "ACCEPT",
         }
 
         iptables {"tcp892":
                 proto => "tcp",
-                ddport => "892",
+                dport => "892",
                 jump => "ACCEPT",
         }
 
