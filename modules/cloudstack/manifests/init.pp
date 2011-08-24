@@ -6,7 +6,7 @@ class cloudstack {
                         yumrepo{"Cloudstack":
                                 baseurl => "http://yumrepo/repositories/rhel/$operatingsystemrelease/stable/oss/",
                                 name => "CloudStack",
-                                enabled => 1,
+                                enable => 1,
                                 gpgcheck => 0,
                         }
                 }
@@ -14,7 +14,7 @@ class cloudstack {
                         yumrepo{"Cloudstack":
                                 baseurl => "http://yumrepo/repositories/fedora/$operatingsystemrelease/stable-2.2/oss/",
                                 name => "CloudStack",
-                                enabled => 1,
+                                enable => 1,
                                 gpgcheck => 0,
                 	}
 
@@ -43,14 +43,14 @@ class cloudstack::nfs-common {
 
 	service {nfs:
 		ensure => running,
-		enabled => true,
+		enable => true,
 		hasstatus => true,
 		require => [ Service[rpcbind], File["/primary"], File["/secondary"] ],
 	}
 
 	service {rpcbind: 
 		ensure => running,
-		enabled => true,
+		enable => true,
 		hasstatus => true,
 	}
 	file {"/primary":
@@ -222,7 +222,7 @@ class cloudstack::kvmagent {
 ### IP Address thoughts:
 ### Use a template based on /etc/sysconfig/ifcfg-ethX
 ### By default only specify eth0, with liberal commenting about what to do in the event of needing to change our simple configuration (e.g. edit agent.properites, add additional network config, etc. 
-### Require network to be enabled
+### Require network to be enable
 ### Require NetworkManager be disabled (Is it installed by default, do we need to do a case?, perhaps we 'ensure absent') 
 ### Make sure we cycle network after deploying a ifcfg. 
 ### Do we handle creation of cloud-br0? I am thinking not, seems like there's a lot of magic there. For now, lets stay away from that. 
