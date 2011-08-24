@@ -296,9 +296,6 @@ class cloudstack::mgmt {
 		creates => "/var/lib/mysql/cloud",
 	}
 
-	file { "/var/lib/mysql/cloud":
-		ensure => present,
-	}
 ################## END MYSQL SECTION ###################################################################################################
 		
 
