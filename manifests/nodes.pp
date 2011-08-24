@@ -12,5 +12,6 @@ node 'demo4-cp.sjc.vmops.com' inherits basenode {
 }
 
 node 'nalley2.cloud.com' inherits basenode {
+	include cloudstack::nfs-common
 	include ssh
 }
