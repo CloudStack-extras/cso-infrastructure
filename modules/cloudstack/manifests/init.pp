@@ -45,8 +45,7 @@ class cloudstack::nfs-common {
 		ensure => running,
 		enabled => true,
 		hasstatus => true,
-		require => Service[rpcbind],
-		require => File["/primary"],
+		require => [ Service[rpcbind], File["/primary"], File["/secondary"] ],
 	}
 
 	service {rpcbind: 
@@ -61,7 +60,6 @@ class cloudstack::nfs-common {
 	file {"/secondary":
 		ensure => directory,
 		mode => 777,
-		require => File["/primary"],
 	}
 	file {"/etc/sysconfig/nfs":
 		source => "puppet://puppet/cloudstack/nfs",
