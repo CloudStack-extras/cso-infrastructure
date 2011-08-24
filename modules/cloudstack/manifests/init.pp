@@ -291,7 +291,7 @@ class cloudstack::mgmt {
                 require => Package[mysql-server],
         }
 	file {"/etc/my.cnf":
-		source => "puppet://puppet/cloudstack/my.cnf"
+		source => "puppet://puppet/cloudstack/my.cnf",
 		notify => Service[mysqld],
 	}
 
