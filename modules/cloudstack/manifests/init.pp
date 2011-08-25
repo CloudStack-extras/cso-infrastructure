@@ -28,6 +28,7 @@ class cloudstack {
 		group => root,
         }
 
+	package {wget: ensure => present}   ### Not needed after 2.2.9, see bug 11258
 ######### DEFINITIONS ####################
 
 	$cs_mgmt_server = "192.168.203.177"
