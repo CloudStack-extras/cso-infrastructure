@@ -327,10 +327,10 @@ class cloudstack::mgmt {
 
 ########## SecStorage ############
 
-	exec { "mount ${cs_sec_storage_nfs_server}:${cs_sec_storage_mnt_point}  /mnt && 
+	exec { 'mount ${cs_sec_storage_nfs_server}:${cs_sec_storage_mnt_point}  /mnt && 
 		${system_tmplt_dl_cmd} /mnt -u ${sysvm_url_kvm} -h kvm -F && 
-		curl 'http://localhost:8096/?command=addSecondaryStorage&url=nfs://${cs_sec_storage_nfs_server}:${cs_sec_storage_mnt_point}&zoneid=1' &&
-		touch /var/lib/cloud/ssvm":
+		curl "http://localhost:8096/?command=addSecondaryStorage&url=nfs://${cs_sec_storage_nfs_server}:${cs_sec_storage_mnt_point}&zoneid=1" &&
+		touch /var/lib/cloud/ssvm':
 		onlyif => ["test ! -e /var/lib/cloud/ssvm", "curl 'http://localhost:8096/?command=listZones&available=true' | grep Zone1",]
 	}
 }
