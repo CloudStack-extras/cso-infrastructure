@@ -36,8 +36,8 @@ class cloudstack {
 ######### DEFINITIONS ####################
 
 	$cs_mgmt_server = "192.168.203.177"
-	$dns1 = "192.168.203.1"
-	$dns2 = "8.8.8.8"
+	$internaldns1 = "192.168.203.1"
+	$dns1 = "8.8.8.8"
 	$cs_agent_netmask = "255.255.255.0"
 	$cs_sec_storage_nfs_server = "192.168.203.176"
         $cs_sec_storage_mnt_point = "/secondary"
