@@ -327,7 +327,7 @@ class cloudstack::mgmt {
 	}
 
 ########## SecStorage ############
-
+## NOTE: This will take a LONG time to run. Go get a cup of coffee
 	exec { "mount ${cloudstack::cs_sec_storage_nfs_server}:${cloudstack::cs_sec_storage_mnt_point}  /mnt ; 
 		${cloudstack::system_tmplt_dl_cmd} -m /mnt -u ${cloudstack::sysvm_url_kvm} -h kvm -F ; 
 		curl 'http://localhost:8096/?command=addSecondaryStorage&url=nfs://${cloudstack::cs_sec_storage_nfs_server}${cloudstack::cs_sec_storage_mnt_point}&zoneid=1' ;
