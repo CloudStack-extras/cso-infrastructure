@@ -319,16 +319,17 @@ class cloudstack::mgmt {
 
 ########## Cluster ##############
 
-	exec {"curl 'http://localhost:8096?command=addCluster&clustername=Cluster1&clustertype=CloudManaged&hypervisor=$hvtype&zoneid=4&podid=1'":
+	exec {"curl 'http://localhost:8096?command=addCluster&clustername=Cluster1&clustertype=CloudManaged&hypervisor=${hvtype}&zoneid=4&podid=1'":
 		onlyif => ["curl 'http://localhost:8096/?command=listZones&available=true' | grep Zone1",
-                        "curl 'http://localhost:8096/?command=listPods' | grep Pod1", ],
+                        "curl 'http://localhost:8096/?command=listPods' | grep Pod1",
+			"curl 'http://localhost:8096/?command=listClusters' | grep -v Cluster1" ],
 	}
 
 ########## SecStorage ############
 
-	exec { "mount $cs_sec_storage_nfs_server:$cs_sec_storage_mnt_point  /mnt && 
-		$system_tmplt_dl_cmd /mnt -u $sysvm_url_kvm -h kvm -F && 
-		curl 'http://localhost:8096/?command=addSecondaryStorage&url=nfs://$cs_sec_storage_nfs_server$cs_sec_storage_mnt_point&zoneid=1' &&
+	exec { "mount ${cs_sec_storage_nfs_server}:${cs_sec_storage_mnt_point}  /mnt && 
+		${system_tmplt_dl_cmd} /mnt -u ${sysvm_url_kvm} -h kvm -F && 
+		curl 'http://localhost:8096/?command=addSecondaryStorage&url=nfs://${cs_sec_storage_nfs_server}:${cs_sec_storage_mnt_point}&zoneid=1' &&
 		touch /var/lib/cloud/ssvm":
 		onlyif => ["test ! -e /var/lib/cloud/ssvm", "curl 'http://localhost:8096/?command=listZones&available=true' | grep Zone1",]
 	}
