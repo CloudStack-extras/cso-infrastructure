@@ -28,6 +28,10 @@ class cloudstack {
 		group => root,
         }
 
+	file { "/etc/hosts":
+		content => template("cloudstack/hosts"),
+	}
+
 	package {wget: ensure => present}   ### Not needed after 2.2.9, see bug 11258
 ######### DEFINITIONS ####################
 
@@ -198,9 +202,6 @@ class cloudstack::kvmagent {
 		content => template("cloudstack/network"),
 	}
 
-	file { "/etc/hosts":  ## Note this file pulls from facter - you may need to adjust to define this externally
-		content => template("cloudstack/hosts"),
-	} 
 
 	file { "/etc/resolv.conf":
 		content => template("cloudstack/resolv.conf"),
