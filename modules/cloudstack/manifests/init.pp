@@ -339,6 +339,7 @@ class cloudstack::mgmt {
 	}
 
 ########## Primary Storage ########
+### THis needs to add a check for a host to have been added
 	exec { "curl 'http://localhost:8096/?command=createStoragePool&name=PStorage&url=nfs://${cloudstack::pri_storage_nfs_server}${cloudstack::pri_storage_mnt_point}&zoneid=4&podid=1'":
 		onlyif => ["curl 'http://localhost:8096/?command=listPods' | grep Pod1",
 				"curl 'http://localhost:8096/?command=listStoragePools' | grep -v PStorage", ]
