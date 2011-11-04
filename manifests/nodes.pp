@@ -17,6 +17,6 @@ node 'nalley2.cloud.com' inherits basenode {
 	include ssh
 }
 
-node 'mgmt1.demo.cloudstack.org inherits basenode { 
+node 'mgmt1.demo.cloudstack.org' inherits basenode { 
 
 }
