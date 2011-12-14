@@ -1,7 +1,8 @@
 class ircbot {
 
 	package { supybot: ensure => latest}
-	
+	package { ncftp: ensure => latest}
+
 	user { bot:
 		ensure => present,
 		name => "bot",
