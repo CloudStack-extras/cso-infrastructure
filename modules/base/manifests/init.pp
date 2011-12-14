@@ -20,7 +20,7 @@ firewall { '000 allow packets with valid state':
     jump        => 'ACCEPT',
   }
   firewall { '999 drop everything else':
-    jump        => 'DROP',
+    jump        => 'DENY',
   }
 
   resources { 'firewall':
