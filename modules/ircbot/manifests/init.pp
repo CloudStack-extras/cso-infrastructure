@@ -3,6 +3,15 @@ class ircbot {
 	package { supybot: ensure => latest}
 	package { ncftp: ensure => latest}
 
+	cron { uploadlogs: 
+		ensure => present,
+		user => "bot",
+		require => [User[bot], Package[ncftp]],
+		hour => 2,
+		command => "ncftpput -A -R -f ~/ftplogin  httpdocs/irc/ ./* > /dev/null "
+		cwd => "/home/bot/logs/ChannelLogger/freenode/#cloudstack"
+	}
+
 	user { bot:
 		ensure => present,
 		name => "bot",
