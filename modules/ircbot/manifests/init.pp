@@ -79,4 +79,13 @@ class ircbot {
                 require => File["/home/bot/plugins"],
         }
 
+	file { "/home/bot/ftplogin":
+		ensure => present,
+		source => "puppet://puppet/ircbot/ftplogin",
+		owner => "bot",
+		group => "bot",
+	}
+
+	
+
 }
