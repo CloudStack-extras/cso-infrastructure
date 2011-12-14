@@ -8,8 +8,8 @@ class ircbot {
 		user => "bot",
 		require => [User[bot], Package[ncftp]],
 		hour => 2,
-		command => "ncftpput -A -R -f ~/ftplogin  httpdocs/irc/ ./* > /dev/null ",
-		cwd => "/home/bot/logs/ChannelLogger/freenode/#cloudstack"
+		command => "cd /home/bot/logs/ChannelLogger/freenode/#cloudstack && ncftpput -A -R -f ~/ftplogin  httpdocs/irc/ ./* > /dev/null ",
+#		cwd => "/home/bot/logs/ChannelLogger/freenode/#cloudstack"
 	}
 
 	user { bot:
