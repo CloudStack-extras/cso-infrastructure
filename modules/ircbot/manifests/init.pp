@@ -60,7 +60,7 @@ class ircbot {
 		ensure => directory,
 		owner => "bot",
 		group => "bot",
-		require => File["/home/bot/"],
+		require => File["/home/bot"],
 	}
 
         file { "/home/bot/tmp":
