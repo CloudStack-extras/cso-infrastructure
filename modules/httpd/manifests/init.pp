@@ -30,12 +30,14 @@ class httpd {
 #
 
 
-        file { "/etc/httpd/conf/httpd.conf":
-                owner   => root,
-                group   => root,
-                mode    => 644,
-                source  => "puppet://puppet/httpd/httpd.conf",
-        }
+#        file { "/etc/httpd/conf/httpd.conf":
+#                owner   => root,
+#                group   => root,
+
+#                mode    => 644,
+
+#                source  => "puppet://puppet/httpd/httpd.conf",
+#        }
 
 ##############################################################
 # IPTables

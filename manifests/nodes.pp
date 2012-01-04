@@ -19,7 +19,7 @@ node 'nalley2.cloud.com' inherits basenode {
 
 node 'mgmt1.demo.cloudstack.org' inherits basenode { 
 
-node 'domu-12-31-39-05-44-b3.compute-1.internal' inherits basenode {
+node 'domu-12-31-39-05-44-b3.compute-1.internal' {
 	include httpd
 	include fpaste
 }

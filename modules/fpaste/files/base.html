@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2005/10/profile">
+    <title>{% block title %}Fedora Pastebin{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/highlight.css" />
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
+  </head>
+  <body>
+    {% include "header.html" %}
+    <div id="main_content">
+      {% block content %}{% endblock %}
+    </div>
+    <div id="bottom_content">
+      {% block sidebar %}{% endblock %}
+    </div>
+    {% include "disclaimer.html" %}
+    {% block script_footer %}{% endblock %}
+  </body>
+</html>
