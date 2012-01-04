@@ -1,6 +1,6 @@
 
 
-node 'puppet' inherits basenode {
+node 'puppet' {
 	include puppet::master
 	include ircbot
 }
