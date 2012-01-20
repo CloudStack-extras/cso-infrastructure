@@ -5,7 +5,7 @@ class puppet {
   }
 
   service { puppet:
-    enabled => true,
+    enable => true,
     hasstatus => true, 
     require => Package[puppet],
   }
