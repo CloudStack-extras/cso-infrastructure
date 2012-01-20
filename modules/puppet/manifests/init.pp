@@ -17,7 +17,20 @@ class puppet {
     mode => 644,
     notify => Service[puppet],
   }
+}
 
-  
+class puppet::master {
+        package {puppet-server: ensure => present}
 
+        service {puppetmaster:
+                ensure => running,
+                hasstatus => true,
+                enable => true,
+        }  
+
+  cron { "checkpuppet": 
+    command => "cd /etc/puppet && git pull origin master", 
+    user => root, 
+    minute  => '*/5',
+  }
 }
