@@ -1,7 +1,7 @@
 class jenkins { 
 
   yumrepo { jenkins: 
-    baseurl => "http://pkg.jenkins-ci.org/redhat/jenkins.repo",
+    baseurl => "http://pkg.jenkins-ci.org/redhat",
     enabled => 1,
     name => jenkins,
     gpgcheck => 0,
