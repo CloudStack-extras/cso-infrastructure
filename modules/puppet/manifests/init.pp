@@ -10,7 +10,7 @@ class puppet {
     require => Package[puppet],
   }
 
-  file {"/etc/puppet/puppet.conf",
+  file {"/etc/puppet/puppet.conf":
     source => "puppet://puppet/puppet/puppet.conf",
     owner => root,
     group => root,
