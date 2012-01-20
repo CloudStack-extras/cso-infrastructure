@@ -15,6 +15,7 @@ class jenkins {
     require => Package[jenkins],
     enable => true,
     hasstatus => true,
+    ensure => true,
   }
 
 }
