@@ -10,7 +10,10 @@ class jenkins {
   package { jenkins:
     ensure => present,
   }
-
+  package { java-1.7.0-openjdk: ensure => present}
+  package { dejavu-lgc-sans-fonts: ensure => present}
+  package { dejavu-lgc-sans-mono-fonts: ensure => present}
+  package { tomcat6: ensure => present}
   service { jenkins: 
     require => Package[jenkins],
     enable => true,
