@@ -13,7 +13,7 @@ class jenkins {
   }
 
   service { jenkins: 
-    requires => Package[jenkins],
+    require => Package[jenkins],
     enable => true,
     hasstatus => true,
   }
