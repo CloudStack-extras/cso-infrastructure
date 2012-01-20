@@ -8,7 +8,6 @@ class jenkins {
   }
 
   package { jenkins:
-    requires => Yumrepo[jenkins],
     ensure => present,
   }
 
