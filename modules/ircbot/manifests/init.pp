@@ -1,6 +1,6 @@
 class ircbot {
 
-	package { supybot: ensure => latest}
+	package { supybot-gribble: ensure => latest}
 	package { ncftp: ensure => latest}
 
 	cron { uploadlogs: 
