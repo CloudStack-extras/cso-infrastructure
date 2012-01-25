@@ -4,4 +4,5 @@ class jenkins::builder {
   package { log4j: ensure => present }
   package { cglib: ensure => present }
   package { genisoimg: ensure => present } 
+  package { checkstyle: ensure => present } 
 }
