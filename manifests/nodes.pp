@@ -28,4 +28,5 @@ node 'domu-12-31-39-05-44-b3.compute-1.internal' {
 node 'domu-12-31-39-15-22-2d.compute-1.internal' {
   include puppet
   include jenkins
+  include jenkins::builder
 }
