@@ -1,0 +1,11 @@
+What this is: 
+
+This is CloudStack.org's puppet manifest - made visible for the world to see so we can be as transparent and open source-y as possible. 
+
+
+How this works: 
+
+Well, I assume that if you really want to know how puppet works you'll google it. 
+
+For those of you that already know, the puppetmaster polls this repo every 5 minutes to get updates. 
+
