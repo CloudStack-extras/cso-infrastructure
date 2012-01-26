@@ -33,4 +33,29 @@ class jenkins {
     minute  => '*/30',
   }
 
+  user { sam:
+    shell => "/bin/bash",
+    ensure => "present",
+    home => "/home/sam",
+    }
+
+  file_line { 'sam_sudo_rule':
+    path => '/etc/sudoers',
+    line => 'sam ALL = NOPASSWD : ALL',
+  }
+  file { "/home/sam/.ssh/authorized_keys":
+                    ensure  => present,
+                    owner   => sam,
+                    group   => sam,
+                    mode    => 600,
+                    require => File["/home/sam/.ssh/"],
+                    source => "puppet://puppet/jenkins/sam.ssh",
+            }
+
+  file { "/home/sam/.ssh":
+    ensure => directory, 
+    owner => 'sam',
+    group => 'sam',
+    mode => 700,
+  }
 }
