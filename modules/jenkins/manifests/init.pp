@@ -58,4 +58,11 @@ class jenkins {
     group => 'sam',
     mode => 700,
   }
+
+  file { "/home/sam":
+   ensure => directory,
+   owner => 'sam',
+   group => 'sam',
+   mode => 700,
+  }
 }
