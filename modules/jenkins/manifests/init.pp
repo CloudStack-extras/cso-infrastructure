@@ -48,7 +48,7 @@ class jenkins {
                     owner   => sam,
                     group   => sam,
                     mode    => 600,
-                    require => File["/home/sam/.ssh/"],
+                    require => File["/home/sam/.ssh"],
                     source => "puppet://puppet/jenkins/sam.ssh",
             }
 
