@@ -5,4 +5,17 @@ class jenkins::builder {
   package { cglib: ensure => present }
   package { genisoimage: ensure => present } 
   package { checkstyle: ensure => present } 
+  package { mysql-server: ensure => present}
+
+  service { mysqld:
+    name => $operatingsystem ? {
+      default => "mysqld",
+       },
+      ensure => running,
+      enable => true,
+      hasstatus => true,
+      require => Package[mysql-server],
+  }
+
+
 }
