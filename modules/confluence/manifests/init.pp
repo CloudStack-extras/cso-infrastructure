@@ -130,7 +130,7 @@ class confluence {
 
   file { "/etc/init.d/confluence":
     mode => '0755',
-    content => template ("confluence.erb"),
+    content => template ("confluence/confluence.erb"),
   }
 
   service { "confluence":
