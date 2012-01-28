@@ -49,7 +49,7 @@ class jira {
   }
   if $params::jira_version=='' {
     notice ("params::jira_version unset, assuming /usr/local")
-    $jira_version='atlassian-jira-4.1.3'
+    $jira_version='atlassian-jira-4.4.4-standalone'
   } else {
     $jira_version=$params::jira_version
   }
@@ -93,7 +93,7 @@ class jira {
     command => "gtar -xf /tmp/atlassian-jira-4.4.4.tar.gz -C ${jira_installdir}",
     require => File [ "${jira_installdir}" ],
     subscribe => Exec [ "dl_cf" ],
-    creates => "${jira_installdir}/${jira_version}",
+    creates => "${jira_installdir}/${jira_version}-standalone",
   }
 
 
