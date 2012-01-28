@@ -100,7 +100,7 @@ class confluence {
 
   exec {"dl_cf":
     command => "wget http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-4.1.3.tar.gz",
-    cwd => "/tmp"
+    cwd => "/tmp",
     creates => "/tmp/atlassian-confluence-4.1.3.tar.gz",
   }
 
