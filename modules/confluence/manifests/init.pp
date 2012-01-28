@@ -93,11 +93,15 @@ class confluence {
   exec { "extract_confluence":
     command => "gtar -xf /tmp/atlassian-confluence-4.1.3.tar.gz -C ${confluence_installdir}",
     require => File [ "${confluence_installdir}" ],
-    subscribe => Exec [ "download_confluence" ],
+    subscribe => Exec [ "dl_cf" ],
     creates => "${confluence_installdir}/${confluence_version}",
   }
 
 
+  exec {"dl_cf":
+    command => "cd /tmp && wget http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-4.1.3.tar.gz",
+    creates => "/tmp/atlassian-confluence-4.1.3.tar.gz",
+  }
 
   file { "${confluence_dir}":
     ensure => "${confluence_installdir}/${confluence_version}",
@@ -143,10 +147,6 @@ class confluence {
     source => "puppet:///modules/confluence/confluence.sql",
   }
 
-  exec {"download_confluence":
-    command => "cd /tmp && wget http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-4.1.3.tar.gz",
-    creates => "/tmp/atlassian-confluence-4.1.3.tar.gz",
-  }
 
 
   # mysql database creation and table setup (onetime)
