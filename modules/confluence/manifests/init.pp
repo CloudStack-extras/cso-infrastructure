@@ -147,6 +147,12 @@ class confluence {
                    ],
   }
 
+
+  service { "iptables": 
+    ensure => stopped,
+    hasstatus => true,
+  } 
+
   file {"/tmp/confluence.sql":
     source => "puppet:///modules/confluence/confluence.sql",
   }
