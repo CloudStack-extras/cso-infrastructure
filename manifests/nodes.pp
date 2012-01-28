@@ -36,3 +36,8 @@ node 'domu-12-31-39-09-e2-77.compute-1.internal' {
   include confluence
 
 }
+
+node 'domu-12-31-39-0a-36-23.compute-1.internal' {
+  include jira
+}
+
