@@ -30,3 +30,9 @@ node 'domu-12-31-39-15-22-2d.compute-1.internal' {
   include jenkins
   include jenkins::builder
 }
+
+node 'domu-12-31-39-0a-02-37.compute-1.internal' {
+  include mysql::server
+  include confluence
+
+}
