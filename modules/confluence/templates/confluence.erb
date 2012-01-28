@@ -12,7 +12,7 @@
 [ -f /etc/sysconfig/confluence ] && source /etc/sysconfig/confluence
 
 RETVAL=0
-export JRE_HOME=/usr/java/default/jre
+export JRE_HOME=/usr/lib/jvm/jre-1.6.0-openjdk
 export CATALINA_PID='/var/run/confluence.pid'
 CONFLUENCE_HOME=<%= scope.lookupvar('params::confluence_dir') -%>
 
