@@ -137,8 +137,8 @@ class confluence {
     ensure      => running,
     enable      => true,
     hasstatus   => true,
-    require     => [ File[ "/etc/init.d/confluence", 
-                   #  "confluence-init.properties" 
+    require     => [ File[ "/etc/init.d/confluence" ,
+                   "confluence-init.properties" 
                    ],
                      Exec[ "create_${confluence_database}", ],
                    ],
