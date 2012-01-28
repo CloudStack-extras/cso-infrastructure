@@ -113,7 +113,7 @@ class confluence {
 
   file { "confluence-init.properties":
     name => "${confluence_installdir}/${confluence_version}/confluence/WEB-INF/classes/confluence-init.properties",
-    content => template ("confluence-init.properties.erb"),
+    content => template ("confluence/confluence-init.properties.erb"),
     subscribe => Exec [ "extract_confluence" ],
   }
 
