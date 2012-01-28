@@ -86,7 +86,7 @@ class confluence {
   Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
 
 
-  file { "${confluence_installdir}":
+  file { '${confluence_installdir}':
     ensure => directory,
   }
 
@@ -125,18 +125,18 @@ class confluence {
   }
 
   file { "/etc/init.d/confluence":
-    mode => 755,
+    mode => '0755',
     content => template ("confluence.erb"),
   }
 
   service { "confluence":
-    enable => true,
-    ensure => running,
-    hasstatus => true,
-    require => [ File[ "/etc/init.d/confluence",
-                       "confluence-init.properties" ],
-	             Exec[ "create_${confluence_database}",
-		               "extract_confluence_data"] ];
+    ensure      => running,
+    enable      => true,
+    hasstatus   => true,
+    require     => [ File[ "/etc/init.d/confluence",
+        "confluence-init.properties" ],
+      Exec[ "create_${confluence_database}",
+        "extract_confluence_data"] ];
   }
 
   file {"/tmp/confluence.sql":
@@ -153,8 +153,8 @@ class confluence {
   #exec { "create_${confluence_database}":
   #  command => "mysql -e \"create database ${confluence_database}; \
   #             grant all on ${confluence_database}.* to '${confluence_user}'@'localhost' \
-#	       identified by '${confluence_password}';\"; \
-#	       mysql ${confluence_database} < /tmp/confluence.sql",
+#      identified by '${confluence_password}';\"; \
+#       mysql ${confluence_database} < /tmp/confluence.sql",
 #    unless => "/usr/bin/mysql ${confluence_database}",
 #    require => [ Service[ "mysqld" ],
 #                 File[ "/tmp/confluence.sql" ] ],
