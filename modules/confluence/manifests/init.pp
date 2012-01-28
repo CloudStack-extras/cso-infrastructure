@@ -139,8 +139,7 @@ class confluence {
     hasstatus   => true,
     require     => [ File[ "/etc/init.d/confluence",
         "confluence-init.properties" ],
-      Exec[ "create_${confluence_database}",
-        "extract_confluence_data"] ];
+      Exec[ "create_${confluence_database}", ] ];
   }
 
   file {"/tmp/confluence.sql":
