@@ -140,7 +140,7 @@ class confluence {
     require     => [ File[ "/etc/init.d/confluence" ,
                    "confluence-init.properties" 
                    ],
-                     Exec[ "create_${confluence_database}", ],
+                     Exec[ "create_${confluence_database}" ]
                    ],
   }
 
