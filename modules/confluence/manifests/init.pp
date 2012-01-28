@@ -85,9 +85,6 @@ class confluence {
   File { owner => '0', group => 'root', mode => '0644' }
   Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
 
-  file { "/tmp/atlassian-confluence-4.1.3.tar.gz":
-    source => "puppet:///modules/confluence/atlassian-confluence-4.1.3.tar.gz",
-  }
 
   file { "${confluence_installdir}":
     ensure => directory,
