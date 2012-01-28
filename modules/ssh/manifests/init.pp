@@ -51,10 +51,10 @@ class ssh {
                 seluser => system_u,
         }
 
-        iptables { "permit inbound ssh":
+        firewall { "permit inbound ssh":
                 proto   => "tcp",
                 dport   => "22",
-                jump    => "ACCEPT",
+                action    => "accept",
         }
 
 }
