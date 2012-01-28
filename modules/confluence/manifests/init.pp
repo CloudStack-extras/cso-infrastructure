@@ -126,7 +126,7 @@ class confluence {
   #  name => "${confluence_datadir}/confluence.cfg.xml",
   #  content => template ("confluence.cfg.xml.erb"),
   #  noop => true,
-  }
+#  }
 
   file { "/etc/init.d/confluence":
     mode => '0755',
