@@ -26,6 +26,7 @@
 class confluence {
   include mysql::server
   include confluence::params
+  include httpd::proxy
 
   # confluence installation defaults
   if $params::confluence_installdir=='' {
@@ -163,5 +164,9 @@ class confluence {
    unless => "/usr/bin/mysql ${confluence_database}",
    require => [ Service[ "mysqld" ],
                  File[ "/tmp/confluence.sql" ] ],
+  }
+
+  file {"/etc/httpd/conf.d/confluence.conf":
+    source => "puppet:///confluence/confluence.conf",
   }
 }
