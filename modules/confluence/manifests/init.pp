@@ -86,7 +86,7 @@ class confluence {
   Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
 
 
-  file { '${confluence_installdir}':
+  file { "${confluence_installdir}":
     ensure => directory,
   }
 
