@@ -1,28 +1,28 @@
 #!/bin/bash
 #
-# confluence redhat init Nan Liu <nan@puppetlabs.com> 
+# jira redhat init Nan Liu <nan@puppetlabs.com> 
 # 
 # chkconfig: - 60 50
-# description: confluence enterprise wiki (catalina tomcat)
+# description: jira enterprise wiki (catalina tomcat)
 
 # source function library
 . /etc/rc.d/init.d/functions
 
 # pull in sysconfig settings
-[ -f /etc/sysconfig/confluence ] && source /etc/sysconfig/confluence
+[ -f /etc/sysconfig/jira ] && source /etc/sysconfig/jira
 
 RETVAL=0
 export JRE_HOME=/usr/lib/jvm/jre-1.6.0-openjdk
-export CATALINA_PID='/var/run/confluence.pid'
-CONFLUENCE_HOME=<%= scope.lookupvar('params::confluence_dir') -%>
+export CATALINA_PID='/var/run/jira.pid'
+JIRA_HOME=<%= scope.lookupvar('params::jira_dir') -%>
 
 start() {
-  ${CONFLUENCE_HOME}/bin/startup.sh
+  ${JIRA_HOME}/bin/startup.sh
   RETVAL=$?
 }
 
 stop() {
-  ${CONFLUENCE_HOME}/bin/shutdown.sh
+  ${JIRA_HOME}/bin/shutdown.sh
   RETVAL=$?
 }
 
@@ -38,7 +38,7 @@ case "$1" in
     start
   ;;
   status)
-    # this appears to be a bug with confluence catalina.sh
+    # this appears to be a bug with jira catalina.sh
     status -p ${CATALINA_PID}
     RETVAL=$?
   ;;
