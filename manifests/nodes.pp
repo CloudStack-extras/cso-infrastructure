@@ -31,7 +31,7 @@ node 'domu-12-31-39-15-22-2d.compute-1.internal' {
   include jenkins::builder
 }
 
-node 'domu-12-31-39-09-e2-77.compute-1.internal' inherits {
+node 'domu-12-31-39-09-e2-77.compute-1.internal' {
   include mysql::server
   include confluence
 
