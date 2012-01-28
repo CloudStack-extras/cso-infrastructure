@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# confluence redhat init Nan Liu <nan@puppetlabs.com> 
+# 
+# chkconfig: - 60 50
+# description: confluence enterprise wiki (catalina tomcat)
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+# pull in sysconfig settings
+[ -f /etc/sysconfig/confluence ] && source /etc/sysconfig/confluence
+
+RETVAL=0
+export JRE_HOME=/usr/lib/jvm/jre-1.6.0-openjdk
+export CATALINA_PID='/var/run/confluence.pid'
+CONFLUENCE_HOME=<%= scope.lookupvar('params::confluence_dir') -%>
+
+start() {
+  ${CONFLUENCE_HOME}/bin/startup.sh
+  RETVAL=$?
+}
+
+stop() {
+  ${CONFLUENCE_HOME}/bin/shutdown.sh
+  RETVAL=$?
+}
+
+case "$1" in 
+  start)
+    start
+  ;;
+  stop)
+    stop
+  ;;
+  restart)
+    stop
+    start
+  ;;
+  status)
+    # this appears to be a bug with confluence catalina.sh
+    status -p ${CATALINA_PID}
+    RETVAL=$?
+  ;;
+  *)
+    echo "Usage: $(basename $0) {start|stop|status|restart}"
+    exit 1
+  ;;
+esac
+
+exit $RETVAL
