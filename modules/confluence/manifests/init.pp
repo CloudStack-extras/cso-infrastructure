@@ -110,11 +110,12 @@ class confluence {
   }
 
   # confluence package have wrong userid 1418
-  exec { "chown_confluence":
-    command => "chown -R root ${confluence_installdir}/${confluence_version}",
-    subscribe => Exec [ "extract_confluence" ],
-    refreshonly => true,
-  }
+#  exec { "chown_confluence":
+#    command => "chown -R root ${confluence_installdir}/${confluence_version}",
+
+#    subscribe => Exec [ "extract_confluence" ],
+#    refreshonly => true,
+#  }
 
   file { "confluence-init.properties":
     name => "${confluence_installdir}/${confluence_version}/confluence/WEB-INF/classes/confluence-init.properties",
