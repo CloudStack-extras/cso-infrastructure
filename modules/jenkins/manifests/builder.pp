@@ -6,7 +6,7 @@ class jenkins::builder {
   package { genisoimage: ensure => present } 
   package { checkstyle: ensure => present } 
   package { mysql-server: ensure => present}
-
+  package { tomcat6: ensure => present}
   service { mysqld:
     name => $operatingsystem ? {
       default => "mysqld",
