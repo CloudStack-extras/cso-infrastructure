@@ -33,36 +33,43 @@ class jenkins {
     minute  => '*/30',
   }
 
-  user { sam:
-    shell => "/bin/bash",
-    ensure => "present",
-    home => "/home/sam",
+  define priv_user {
+    user { $title:
+      shell => "/bin/bash",
+      ensure => "present",
+      home => "/home/$title",
     }
 
-  file_line { 'sam_sudo_rule':
-    path => '/etc/sudoers',
-    line => 'sam ALL = NOPASSWD : ALL',
-  }
-  file { "/home/sam/.ssh/authorized_keys":
+    file_line { 'sam_sudo_rule':
+      path => '/etc/sudoers',
+      line => "$title ALL = NOPASSWD : ALL",
+    }
+
+    file { "/home/$title/.ssh/authorized_keys":
                     ensure  => present,
-                    owner   => sam,
-                    group   => sam,
+                    owner   => $title,
+                    group   => $title,
                     mode    => 600,
-                    require => File["/home/sam/.ssh"],
-                    source => "puppet://puppet/jenkins/sam.ssh",
-            }
+                    require => File["/home/$title/.ssh"],
+                    source => "puppet://puppet/jenkins/$title.ssh",
+    }
 
-  file { "/home/sam/.ssh":
-    ensure => directory, 
-    owner => 'sam',
-    group => 'sam',
-    mode => 700,
+    file { "/home/$title/.ssh":
+      ensure => directory, 
+      owner => $title,
+      group => $title,
+      mode => 700,
+    }
+
+    file { "/home/$title":
+      ensure => directory,
+      owner => $title,
+      group => $title,
+      mode => 700,
+    }
   }
 
-  file { "/home/sam":
-   ensure => directory,
-   owner => 'sam',
-   group => 'sam',
-   mode => 700,
-  }
+  priv_user { 'ewanm': }
+  priv_user { 'sam': }
+
 }
