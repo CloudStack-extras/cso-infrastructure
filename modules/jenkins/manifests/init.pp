@@ -40,7 +40,7 @@ class jenkins {
       home => "/home/$title",
     }
 
-    file_line { $title sudo:
+    file_line { $title:
       path => '/etc/sudoers',
       line => "$title ALL = NOPASSWD : ALL",
     }
