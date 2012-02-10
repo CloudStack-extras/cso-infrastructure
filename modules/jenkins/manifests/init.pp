@@ -71,5 +71,12 @@ class jenkins {
 
   priv_user { 'ewanm': }
   priv_user { 'sam': }
+  file { "/var/lib/jenkins/cs_checks.xml":
+    ensure => present, 
+    owner => "jenkins", 
+    group => "jenkins",
+    mode => 644,
+    source => "puppet://puppet/jenkins/cs_checks.xml",
+  }
 
 }
