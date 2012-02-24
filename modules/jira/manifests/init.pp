@@ -133,7 +133,7 @@ class jira {
     content => template ("jira/jira.erb"),
   }
 
-  file { "${jira_installdir}/${jira_version}/plugins/installed-plugins"
+  file { "${jira_installdir}/${jira_version}/plugins/installed-plugins":
     mode => '0644',
     source => "puppet://puppet/jira/jfs-1.4.3_44.jar",
   }
