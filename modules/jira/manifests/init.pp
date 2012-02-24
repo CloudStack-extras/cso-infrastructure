@@ -97,10 +97,10 @@ class jira {
   }
 
   exec { "extract_fs":
-    command => "unzip /tmp/jfs_jira_4.4.4_patch_1.2.3.zip -d ${jira_installdir}/${jira_version}/atlassian-jira && touch /tmp/fs_done"
+    command => "unzip /tmp/jfs_jira_4.4.4_patch_1.2.3.zip -d ${jira_installdir}/${jira_version}/atlassian-jira && touch /tmp/fs_done",
     require => File [ "${jira_installdir}" ],
     subscribe => Exec [ "dl_fs" ],
-    creates => "/tmp/fs_done"
+    creates => "/tmp/fs_done",
   } 
 
   exec {"dl_cf":
