@@ -122,10 +122,10 @@ class jira {
   }
 
 
-  file { "jira-init.properties":
-    name => "${jira_installdir}/${jira_version}/jira/WEB-INF/classes/jira-init.properties",
-    content => template ("jira/jira-init.properties.erb"),
-    subscribe => Exec [ "extract_jira" ],
+  file { "jira-application.properties":
+    name => "${jira_installdir}/${jira_version}/atlassian-jira/WEB-INF/classes/jira-application.properties",
+    source => "puppet://puppet/jira/jira-application.properties",
+    ensure => present,
   }
 
 
@@ -144,7 +144,7 @@ class jira {
     enable      => true,
     hasstatus   => true,
     require     => [ File[ "/etc/init.d/jira" ,
-                   "jira-init.properties" 
+                   "jira-application.properties" 
                    ],
                      Exec[ "create_${jira_database}" ]
                    ],
