@@ -21,13 +21,13 @@ define mysql::backup (
   $dbname = $name,
 ) {
 
-  file { "/root/${dbname}-backup.sh":
-    content => template ("mysql/backup.erb"),
+  file { "/root/${name}-backup.sh":
+    content => template ('mysql/backup.erb'),
     mode => '0744',
   }
 
-  cron { ${dbname}-backup: 
-    command => "/root/${dbname}-backup.sh",
+  cron { ${name}-backup: 
+    command => "/root/${name}-backup.sh",
     user => root,
     minute => 33,
   } 
