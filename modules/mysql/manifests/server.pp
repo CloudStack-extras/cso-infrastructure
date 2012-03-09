@@ -1,17 +1,17 @@
 class mysql::server {
-  package { "mysql-server":
+  package { 'mysql-server':
     ensure => present,
   }
 
-  service { "mysqld":
-    enable => true,
-    ensure => running,
-    hasstatus => true,
+  service { 'mysqld':
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
     hasrestart => true,
-    require => Package[ "mysql-server" ],
+    require    => Package[ 'mysql-server' ],
   }
 
 ## For backup
-  package { "s3cmd" : ensure => present, }
+  package { 's3cmd' : ensure => present, }
 
 }

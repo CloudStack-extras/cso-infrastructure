@@ -1,5 +1,5 @@
 class mysql {
-  package { "mysql":
+  package { 'mysql':
     ensure => present,
   }
 }
