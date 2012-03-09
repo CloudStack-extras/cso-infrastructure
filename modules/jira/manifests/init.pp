@@ -30,25 +30,25 @@ class jira {
 
   # jira installation defaults
   if $params::jira_installdir=='' {
-    notice ("params::jira_installdir unset, assuming /usr/local")
+    notice ('params::jira_installdir unset, assuming /usr/local')
     $jira_installdir='/usr/local'
   } else {
     $jira_installdir=$params::jira_installdir
   }
   if $params::jira_dir=='' {
-    notice ("params::jira_dir unset, assuming /usr/local")
+    notice ('params::jira_dir unset, assuming /usr/local')
     $jira_dir='/usr/local/jira'
   } else {
     $jira_dir=$params::jira_dir
   }
   if $params::jira_datadir=='' {
-    notice ("params::jira_datadir unset, assuming /usr/local")
+    notice ('params::jira_datadir unset, assuming /usr/local')
     $jira_datadir='/usr/local/jira-data'
   } else {
     $jira_datadir=$params::jira_datadir
   }
   if $params::jira_version=='' {
-    notice ("params::jira_version unset, assuming /usr/local")
+    notice ('params::jira_version unset, assuming /usr/local')
     $jira_version='atlassian-jira-4.4.4-standalone'
   } else {
     $jira_version=$params::jira_version
@@ -56,19 +56,19 @@ class jira {
 
   # mysql configuration
   if $params::jira_database=='' {
-    notice ("params::jira_database, assuming jira")
+    notice ('params::jira_database, assuming jira')
     $jira_database='jira'
   } else {
     $jira_database=$params::jira_database
   }
   if $params::jira_user=='' {
-    notice ("params::jira_user, assuming jira")
+    notice ('params::jira_user, assuming jira')
     $jira_user='jira'
   } else {
     $jira_user=$params::jira_user
   }
   if $params::jira_password=='' {
-    notice ("params::jira_password, assuming jira")
+    notice ('params::jira_password, assuming jira')
     $jira_password='puppetrocks'
   } else {
     $jira_password=$params::jira_password
@@ -82,83 +82,83 @@ class jira {
   }
 
   File { owner => '0', group => 'root', mode => '0644' }
-  Exec { path => "/bin:/sbin:/usr/bin:/usr/sbin" }
+  Exec { path => '/bin:/sbin:/usr/bin:/usr/sbin' }
 
 
   file { "${jira_installdir}":
     ensure => directory,
   }
 
-  exec { "extract_jira":
+  exec { 'extract_jira':
     command   => "gtar -xf /tmp/atlassian-jira-4.4.4.tar.gz -C ${jira_installdir}",
     require   => File [ "${jira_installdir}" ],
-    subscribe => Exec [ "dl_cf" ],
+    subscribe => Exec [ 'dl_cf' ],
     creates   => "${jira_installdir}/${jira_version}-standalone",
   }
 
-  exec { "extract_fs":
+  exec { 'extract_fs':
     command   => "bash -c 'unzip -o /tmp/jfs_jira_4.4.4_patch_1.2.3.zip \
       -d ${jira_installdir}/${jira_version}/atlassian-jira && \
       touch /tmp/fs_done && exit 0' ",
     require   => File [ "${jira_installdir}" ],
-    subscribe => Exec [ "dl_fs" ],
-    creates   => "/tmp/fs_done",
+    subscribe => Exec [ 'dl_fs' ],
+    creates   => '/tmp/fs_done',
   }
 
-  exec {"dl_cf":
-    command => "wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-4.4.4.tar.gz",
-    cwd     => "/tmp",
-    creates => "/tmp/atlassian-jira-4.4.4.tar.gz",
+  exec {'dl_cf':
+    command => 'wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-4.4.4.tar.gz',
+    cwd     => '/tmp',
+    creates => '/tmp/atlassian-jira-4.4.4.tar.gz',
   }
 
-  exec {"dl_fs":
-    command => "wget http://www.quisapps.com/jfs/jfs_jira_4.4.4_patch_1.2.3.zip",
-    cwd     => "/tmp",
-    creates => "/tmp/jfs_jira_4.4.4_patch_1.2.3.zip",
+  exec {'dl_fs':
+    command => 'wget http://www.quisapps.com/jfs/jfs_jira_4.4.4_patch_1.2.3.zip',
+    cwd     => '/tmp',
+    creates => '/tmp/jfs_jira_4.4.4_patch_1.2.3.zip',
   }
 
   file { "${jira_dir}":
     ensure  => "${jira_installdir}/${jira_version}",
-    require => Exec [ "extract_jira" ];
+    require => Exec [ 'extract_jira' ];
   }
 
 
-  file { "jira-application.properties":
+  file { 'jira-application.properties':
     ensure => present,
     name   => "${jira_installdir}/${jira_version}/atlassian-jira/WEB-INF/classes/jira-application.properties",
-    source => "puppet://puppet/jira/jira-application.properties",
+    source => 'puppet://puppet/jira/jira-application.properties',
   }
 
 
-  file { "/etc/init.d/jira":
+  file { '/etc/init.d/jira':
     mode    => '0755',
-    content => template ("jira/jira.erb"),
+    content => template ('jira/jira.erb'),
   }
 
   file { "${jira_installdir}/${jira_version}/plugins/installed-plugins/jfs-1.4.3_44.jar":
     mode   => '0644',
-    source => "puppet://puppet/jira/jfs-1.4.3_44.jar",
+    source => 'puppet://puppet/jira/jfs-1.4.3_44.jar',
   }
 
-  service { "jira":
+  service { 'jira':
     ensure      => running,
     enable      => true,
     hasstatus   => true,
-    require     => [ File[ "/etc/init.d/jira" ,
-      "jira-application.properties"
+    require     => [ File[ '/etc/init.d/jira' ,
+      'jira-application.properties'
       ],
       Exec[ "create_${jira_database}" ]
       ],
   }
 
 
-  service { "iptables":
+  service { 'iptables':
     ensure    => stopped,
     hasstatus => true,
   }
 
   file {'/tmp/jira.sql':
-    source => "puppet:///modules/jira/jira.sql",
+    source => 'puppet:///modules/jira/jira.sql',
   }
 
 
@@ -170,14 +170,14 @@ class jira {
       identified by '${jira_password}';\"; \ ",
 
 ######       mysql ${jira_database} < /tmp/jira.sql",
-    unless => "/usr/bin/mysql ${jira_database}",
-    require => [ Service[ "mysqld" ],
-      File[ "/tmp/jira.sql" ] ],
+    unless  => "/usr/bin/mysql ${jira_database}",
+    require => [ Service[ 'mysqld' ],
+      File[ '/tmp/jira.sql' ] ],
   }
 
-  file {"/etc/httpd/conf.d/jira.conf":
-    source => "puppet:///jira/jira.conf",
+  file {'/etc/httpd/conf.d/jira.conf':
+    source => 'puppet:///jira/jira.conf',
   }
 
-  mysql::backup{ jira }
+  mysql::backup{ jira: }
 }
