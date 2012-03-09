@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+#This is to backup databases that we use all over creation. 
+#
+mysqldump <%= dbname -%> > <%= dbname -%>.`date +%d-%m-%y-%R`
+
+
