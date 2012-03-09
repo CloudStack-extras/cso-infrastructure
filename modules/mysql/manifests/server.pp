@@ -10,4 +10,8 @@ class mysql::server {
     hasrestart => true,
     require => Package[ "mysql-server" ],
   }
+
+## For backup
+  package { "s3cmd" : ensure => present, }
+
 }
