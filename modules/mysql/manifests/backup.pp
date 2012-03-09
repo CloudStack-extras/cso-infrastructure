@@ -12,7 +12,7 @@
 #  }
 #
 define mysql::backup (
-  $dbname,
+  $dbname = $name,
 ) {
 
   file { "/root/${name}-backup.sh":
