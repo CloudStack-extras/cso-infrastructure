@@ -41,7 +41,7 @@ node 'domu-12-31-39-09-e2-77.compute-1.internal' {
 
 }
 
-node 'domu-12-31-39-0a-36-23.compute-1.internal' {
+node 'ip-10-72-113-173.ec2.internal' {
   include jira
   include ntp
 }
