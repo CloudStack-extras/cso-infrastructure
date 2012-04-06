@@ -179,5 +179,5 @@ class jira {
     source => 'puppet:///jira/jira.conf',
   }
 
-  mysql::backup{ jira }
+  #mysql::backup{ jira }
 }
