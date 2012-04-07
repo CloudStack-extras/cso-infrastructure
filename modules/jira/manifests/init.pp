@@ -96,25 +96,11 @@ class jira {
     creates   => "${jira_installdir}/${jira_version}-standalone",
   }
 
-  exec { 'extract_fs':
-    command   => "bash -c 'unzip -o /tmp/jfs_jira_4.4.4_patch_1.2.3.zip \
-      -d ${jira_installdir}/${jira_version}/atlassian-jira && \
-      touch /tmp/fs_done && exit 0' ",
-    require   => File [ "${jira_installdir}" ],
-    subscribe => Exec [ 'dl_fs' ],
-    creates   => '/tmp/fs_done',
-  }
 
   exec {'dl_cf':
     command => 'wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-4.4.4.tar.gz',
     cwd     => '/tmp',
     creates => '/tmp/atlassian-jira-4.4.4.tar.gz',
-  }
-
-  exec {'dl_fs':
-    command => 'wget http://www.quisapps.com/jfs/jfs_jira_4.4.4_patch_1.2.3.zip',
-    cwd     => '/tmp',
-    creates => '/tmp/jfs_jira_4.4.4_patch_1.2.3.zip',
   }
 
   file { "${jira_dir}":
@@ -135,10 +121,6 @@ class jira {
     content => template ('jira/jira.erb'),
   }
 
-  file { "${jira_installdir}/${jira_version}/plugins/installed-plugins/jfs-1.4.3_44.jar":
-    mode   => '0644',
-    source => 'puppet://puppet/jira/jfs-1.4.3_44.jar',
-  }
 
   service { 'jira':
     ensure      => running,
