@@ -6,6 +6,6 @@ mkdir -p /root/dbbu
 cd /root/dbbu 
 find ./ -mtime +1 -type f -exec rm '{}' \;
 mysqldump -A > alldbdump.`date +%d-%m-%y-%R`.$HOSTNAME
-s3cmd --skip-existing --no-delete-removed sync alldbdump* s3://backups.cloudstack.org/database/
+s3cmd --skip-existing --no-delete-removed sync alldbdump* s3://backups.cloudstack.org/
 
 
