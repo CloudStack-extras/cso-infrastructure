@@ -46,7 +46,5 @@ node 'ip-10-72-113-173.ec2.internal' {
   include ntp
 }
 
-node 'ip-10-190-27-74.ec2.internal' inherits basenode {
-  include ntp
-  include  mysql::server
+node 'ip-10-190-27-74.ec2.internal' {
 }
