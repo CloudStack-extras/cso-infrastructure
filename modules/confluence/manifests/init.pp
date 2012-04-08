@@ -26,7 +26,6 @@
 class confluence {
   include mysql::server
   include confluence::params
-  include httpd::proxy
 
   # confluence installation defaults
   if $params::confluence_installdir=='' {
