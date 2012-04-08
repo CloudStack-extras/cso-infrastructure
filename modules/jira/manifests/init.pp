@@ -127,11 +127,11 @@ class jira {
     ensure      => running,
     enable      => true,
     hasstatus   => true,
-    require     => [ File[ '/etc/init.d/jira' ,
+    require     => File[ '/etc/init.d/jira' ,
       'jira-application.properties'
       ],
-      Exec[ "create_${jira_database}" ]
-      ],
+#      Exec[ "create_${jira_database}" ]
+      
   }
 
 
