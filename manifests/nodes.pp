@@ -47,4 +47,5 @@ node 'ip-10-72-113-173.ec2.internal' {
 }
 
 node 'ip-10-190-27-74.ec2.internal' {
+  include puppet
 }
