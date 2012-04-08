@@ -162,5 +162,19 @@ class jira {
     source => 'puppet:///jira/jira.conf',
   }
 
+  file {'/root/jirabu.sh':
+    source => 'puppet:///jira/jirabu.sh',
+    mode   => '0700',
+    owner  => root,
+    group  => root,
+  }
+
+  cron {jirabu : 
+    command => '/root/jirabu.sh',
+    user    => root,
+    hour    => 05,
+    minute  => 32,
+  }
+
   #mysql::backup{ jira }
 }
