@@ -147,16 +147,17 @@ class jira {
 
 
   # mysql database creation and table setup (onetime)
-  exec { "create_${jira_database}":
-    command => "mysql -e \"create database ${jira_database}; \
-      grant all on ${jira_database}.* to '${jira_user}'@'localhost' \
-      identified by '${jira_password}';\"; \ ",
+#  exec { "create_${jira_database}":
+
+#    command => "mysql -e \"create database ${jira_database}; \
+#      grant all on ${jira_database}.* to '${jira_user}'@'localhost' \
+#      identified by '${jira_password}';\"; \ ",
 
 ######       mysql ${jira_database} < /tmp/jira.sql",
-    unless  => "/usr/bin/mysql ${jira_database}",
-    require => [ Service[ 'mysqld' ],
-      File[ '/tmp/jira.sql' ] ],
-  }
+#    unless  => "/usr/bin/mysql ${jira_database}",
+#    require => [ Service[ 'mysqld' ],
+#      File[ '/tmp/jira.sql' ] ],
+#  }
 
   file {'/etc/httpd/conf.d/jira.conf':
     source => 'puppet:///jira/jira.conf',
