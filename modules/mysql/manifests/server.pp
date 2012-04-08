@@ -25,7 +25,7 @@ class mysql::server {
     command  => '/root/bu.sh',
     user     => root,
     minute   => 13,
-    requires => File['/root/bu.sh'],
+    require  => File['/root/bu.sh'],
   }
 
   firewall { '888-permit_mysql_in': 
