@@ -14,4 +14,9 @@ class mysql::server {
 ## For backup
   package { 's3cmd' : ensure => present, }
 
+  firewall { 'permit mysql in' 
+    proto  => 'tcp',
+    dport  => '3306',
+    action => 'accept',
+  }
 }
