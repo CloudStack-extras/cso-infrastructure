@@ -34,7 +34,7 @@ node 'domu-12-31-39-15-22-2d.compute-1.internal' {
   include ntp
 }
 
-node 'domu-12-31-39-09-e2-77.compute-1.internal' {
+node 'ip-10-191-51-44.ec2.internal' {
   include mysql::server
   include confluence
   include ntp
