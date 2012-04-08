@@ -15,16 +15,16 @@ class mysql::server {
   package { 's3cmd' : ensure => present, }
 
   file { '/root/bu.sh':
-    mode    => 700,
+    mode    => '0700',
     owner   => 'root',
     group   => 'root',
     content => template('mysql/backup.erb'),
   }
 
   cron { 'dbbackup':
-    command => "/root/bu.sh",
-    user => root,
-    minute => 13,
+    command  => '/root/bu.sh',
+    user     => root,
+    minute   => 13,
     requires => File['/root/bu.sh'],
   }
 
