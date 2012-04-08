@@ -174,4 +174,19 @@ class confluence {
   file {"/etc/httpd/conf.d/confluence.conf":
     source => "puppet:///confluence/confluence.conf",
   }
+  file {'/root/cfbu.sh':
+    source => 'puppet:///confluence/cfbu.sh',
+    mode   => '0700',
+    group  => 'root',
+    owner  => 'root',
+  }
+
+  cron {'backup_confluence_dirs':
+    command => '/root/cfbu.sh',
+    user    => root,
+    hour    => 04,
+    minute  => 19,
+  }
+
 }
+
