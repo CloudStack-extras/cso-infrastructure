@@ -13,6 +13,12 @@ class mysql::server {
 
 ## For backup
   package { 's3cmd' : ensure => present, }
+  file { '/root/bu.sh':
+    mode    => 700,
+    owner   => 'root',
+    group   => 'root',
+    content => template('mysql/backup.erb'),
+  }
 
   firewall { '888-permit_mysql_in': 
     proto  => 'tcp',
