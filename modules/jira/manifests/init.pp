@@ -24,7 +24,6 @@
 #
 
 class jira {
-  include mysql::server
   include jira::params
 #  include httpd::proxy
 # commenting that out b/c we moved to nginx
