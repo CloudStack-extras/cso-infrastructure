@@ -71,6 +71,7 @@ class jenkins {
 
   priv_user { 'ewanm': }
   priv_user { 'sam': }
+  priv_user { 'prasanna': }
   file { "/var/lib/jenkins/cs_checks.xml":
     ensure => present, 
     owner => "jenkins", 
