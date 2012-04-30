@@ -4,7 +4,16 @@ class ntp {
     ensure => latest
   }
 
+  package { "ntp":
+    ensure => latest,
+  }
+
+  service { "ntp":
+    ensure => running,
+  }
+
   cron { 'ntpdate':
+    ensure => absent,
     command => '/usr/sbin/ntpdate tick.redhat.com',
     user    => root,
     minute  => 24,
