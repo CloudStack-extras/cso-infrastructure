@@ -8,7 +8,7 @@ class ntp {
     ensure => latest,
   }
 
-  service { "ntp":
+  service { "ntpd":
     ensure => running,
   }
 
