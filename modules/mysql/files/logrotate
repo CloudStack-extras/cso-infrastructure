@@ -1,0 +1,7 @@
+/var/log/db-backup.log {
+  weekly
+  missingok
+  rotate 7
+  compress
+  notifempty
+}

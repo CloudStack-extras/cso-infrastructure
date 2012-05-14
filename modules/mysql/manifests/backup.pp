@@ -20,6 +20,11 @@ define mysql::backup (
     mode    => '0744',
   }
 
+  file { "/etc/logrotate.d/${name}-backup",
+    source => "puppet://puppet/mysql/logrotate",
+    mode   => '0644',
+  }
+
   cron { "${name}-backup":
     command => "/root/${name}-backup.sh",
     user    => root,
