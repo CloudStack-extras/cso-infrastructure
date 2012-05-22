@@ -36,7 +36,7 @@ class confluence {
   }
   if $params::confluence_dir=='' {
     notice ("params::confluence_dir unset, assuming /usr/local")
-    $confluence_dir='/usr/local/confluence'
+    $confluence_dir='/usr/local/confluence/atlassian-confluence-4.2.3'
   } else {
     $confluence_dir=$params::confluence_dir
   }
@@ -48,7 +48,7 @@ class confluence {
   }
   if $params::confluence_version=='' {
     notice ("params::confluence_version unset, assuming /usr/local")
-    $confluence_version='atlassian-confluence-4.1.3'
+    $confluence_version='atlassian-confluence-4.2.3'
   } else {
     $confluence_version=$params::confluence_version
   }
@@ -91,7 +91,7 @@ class confluence {
   }
 
   exec { "extract_confluence":
-    command => "gtar -xf /tmp/atlassian-confluence-4.1.3.tar.gz -C ${confluence_installdir}",
+    command => "gtar -xf /tmp/atlassian-confluence-4.2.3.tar.gz -C ${confluence_installdir}",
     require => File [ "${confluence_installdir}" ],
     subscribe => Exec [ "dl_cf" ],
     creates => "${confluence_installdir}/${confluence_version}",
@@ -99,9 +99,9 @@ class confluence {
 
 
   exec {"dl_cf":
-    command => "wget http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-4.1.3.tar.gz",
+    command => "wget http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-4.2.3.tar.gz",
     cwd => "/tmp",
-    creates => "/tmp/atlassian-confluence-4.1.3.tar.gz",
+    creates => "/tmp/atlassian-confluence-4.2.3.tar.gz",
   }
 
   file { "${confluence_dir}":
