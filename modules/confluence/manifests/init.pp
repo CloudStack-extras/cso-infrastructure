@@ -36,7 +36,7 @@ class confluence {
   }
   if $params::confluence_dir=='' {
     notice ("params::confluence_dir unset, assuming /usr/local")
-    $confluence_dir='/usr/local/confluence/atlassian-confluence-4.2.3'
+    $confluence_dir='/usr/local/confluence-4.2.3'
   } else {
     $confluence_dir=$params::confluence_dir
   }

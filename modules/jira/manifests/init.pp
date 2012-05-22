@@ -38,7 +38,7 @@ class jira {
   }
   if $params::jira_dir=='' {
     notice ('params::jira_dir unset, assuming /usr/local')
-    $jira_dir='/usr/local/jira'
+    $jira_dir='/usr/local/jira-5.0.5'
   } else {
     $jira_dir=$params::jira_dir
   }
@@ -50,7 +50,7 @@ class jira {
   }
   if $params::jira_version=='' {
     notice ('params::jira_version unset, assuming /usr/local')
-    $jira_version='atlassian-jira-4.4.4-standalone'
+    $jira_version='atlassian-jira-5.0.5-standalone'
   } else {
     $jira_version=$params::jira_version
   }
@@ -91,7 +91,7 @@ class jira {
   }
 
   exec { 'extract_jira':
-    command   => "gtar -xf /tmp/atlassian-jira-4.4.4.tar.gz -C ${jira_installdir}",
+    command   => "gtar -xf /tmp/atlassian-jira-5.0.5.tar.gz -C ${jira_installdir}",
     require   => File [ "${jira_installdir}" ],
     subscribe => Exec [ 'dl_cf' ],
     creates   => "${jira_installdir}/${jira_version}-standalone",
@@ -99,9 +99,9 @@ class jira {
 
 
   exec {'dl_cf':
-    command => 'wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-4.4.4.tar.gz',
+    command => 'wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-5.0.5.tar.gz',
     cwd     => '/tmp',
-    creates => '/tmp/atlassian-jira-4.4.4.tar.gz',
+    creates => '/tmp/atlassian-jira-5.0.5.tar.gz',
   }
 
   file { "${jira_dir}":

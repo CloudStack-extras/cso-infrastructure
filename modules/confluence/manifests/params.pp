@@ -1,7 +1,7 @@
 class confluence::params {
   # confluence installation defaults
   $confluence_installdir='/usr/local'
-  $confluence_dir='/usr/local/confluence/atlassian-confluence-4.2.3'
+  $confluence_dir='/usr/local/confluence-4.2.3'
   $confluence_datadir='/usr/local/confluence-data'
   $confluence_version='atlassian-confluence-4.2.3'
   # mysql database connection info
