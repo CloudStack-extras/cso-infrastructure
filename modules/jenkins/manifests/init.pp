@@ -34,6 +34,7 @@ class jenkins {
   }
 
   firewall { '8080 allow http-alt':
+    ensure => absent,
     proto       => 'tcp',
     dport       => '8080',
     action        => 'accept',
