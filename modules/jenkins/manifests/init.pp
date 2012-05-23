@@ -27,6 +27,12 @@ class jenkins {
     proxy  => 'http://localhost:8080',
   }
 
+  firewall { '80 allow http':
+    proto       => 'tcp',
+    dport       => '80',
+    action        => 'accept',
+  }
+
   firewall { '8080 allow http-alt':
     proto       => 'tcp',
     dport       => '8080',
