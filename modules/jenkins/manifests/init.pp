@@ -22,7 +22,7 @@ class jenkins {
   }
 
   include nginx
-  nginx::resource::vhost { "$fqdn":
+  nginx::resource::vhost { "jenkins.cloudstack.org":
     ensure => present,
     proxy  => 'http://localhost:8080',
   }
