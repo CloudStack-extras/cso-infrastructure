@@ -21,6 +21,12 @@ class jenkins {
     ensure => true,
   }
 
+  include nginx
+  nginx::resource::vhost { "$fqdn":
+    ensure => present,
+    proxy  => 'http://localhost:8080',
+  }
+
   firewall { '8080 allow http-alt':
     proto       => 'tcp',
     dport       => '8080',
