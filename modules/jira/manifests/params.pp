@@ -3,7 +3,7 @@ class jira::params {
   $jira_installdir='/usr/local'
   $jira_dir='/usr/local/jira'
   $jira_datadir='/usr/local/jira-data'
-  $jira_version='atlassian-jira-4.4.4-standalone'
+  $jira_version='atlassian-jira-4.4.5-standalone'
   # mysql database connection info
   $jira_database='jira'
   $jira_user='jira'

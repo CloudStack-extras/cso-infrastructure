@@ -86,30 +86,6 @@ class jira {
   Exec { path => '/bin:/sbin:/usr/bin:/usr/sbin' }
 
 
-  file { "${jira_installdir}":
-    ensure => directory,
-  }
-
-  exec { 'extract_jira':
-    command   => "gtar -xf /tmp/atlassian-jira-4.4.4.tar.gz -C ${jira_installdir}",
-    require   => File [ "${jira_installdir}" ],
-    subscribe => Exec [ 'dl_cf' ],
-    creates   => "${jira_installdir}/${jira_version}-standalone",
-  }
-
-
-  exec {'dl_cf':
-    command => 'wget http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-4.4.4.tar.gz',
-    cwd     => '/tmp',
-    creates => '/tmp/atlassian-jira-4.4.4.tar.gz',
-  }
-
-  file { "${jira_dir}":
-    ensure  => "${jira_installdir}/${jira_version}",
-    require => Exec [ 'extract_jira' ];
-  }
-
-
   file { 'jira-application.properties':
     ensure => present,
     name   => "${jira_installdir}/${jira_version}/atlassian-jira/WEB-INF/classes/jira-application.properties",
@@ -130,37 +106,12 @@ class jira {
     require     => File[ '/etc/init.d/jira' ,
       'jira-application.properties'
       ],
-#      Exec[ "create_${jira_database}" ]
-      
   }
 
 
   service { 'iptables':
     ensure    => stopped,
     hasstatus => true,
-  }
-
-  file {'/tmp/jira.sql':
-    source => 'puppet:///modules/jira/jira.sql',
-  }
-
-
-
-  # mysql database creation and table setup (onetime)
-#  exec { "create_${jira_database}":
-
-#    command => "mysql -e \"create database ${jira_database}; \
-#      grant all on ${jira_database}.* to '${jira_user}'@'localhost' \
-#      identified by '${jira_password}';\"; \ ",
-
-######       mysql ${jira_database} < /tmp/jira.sql",
-#    unless  => "/usr/bin/mysql ${jira_database}",
-#    require => [ Service[ 'mysqld' ],
-#      File[ '/tmp/jira.sql' ] ],
-#  }
-
-  file {'/etc/httpd/conf.d/jira.conf':
-    source => 'puppet:///jira/jira.conf',
   }
 
   file {'/root/jirabu.sh':
