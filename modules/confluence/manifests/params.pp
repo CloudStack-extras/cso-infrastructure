@@ -15,6 +15,6 @@ class confluence::params {
   $default_packages=$operatingsystem ? {
     'debian' => [ "libx11-6", "libx11-dev", "libxt6", "libxt6-dbg", "libxext6", "libxtst-dev", "libxtst6", "xlibs-dbg", "xlibs-dev", "mysql-server" ],
     'ubuntu' => [ "libice-dev", "libsm-dev", "libx11-dev", "libxext-dev", "libxp-dev", "libxt-dev", "libxtst-dev"],
-    default => [ "libXp", "libXp-devel", "java-1.7.0-openjdk", ],
+    default => [ "libXp", "libXp-devel", "java-1.6.0-openjdk", ],
   }
 }
