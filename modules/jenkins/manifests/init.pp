@@ -46,45 +46,10 @@ class jenkins {
     minute  => '*/30',
   }
 
-  define priv_user {
-    user { $title:
-      shell => "/bin/bash",
-      ensure => "present",
-      home => "/home/$title",
-    }
+  users::priv_user { 'ewanm': }
+  users::priv_user { 'sam': }
+  users::priv_user { 'prasanna': }
 
-    file_line { $title:
-      path => '/etc/sudoers',
-      line => "$title ALL = NOPASSWD : ALL",
-    }
-
-    file { "/home/$title/.ssh/authorized_keys":
-                    ensure  => present,
-                    owner   => $title,
-                    group   => $title,
-                    mode    => 600,
-                    require => File["/home/$title/.ssh"],
-                    source => "puppet://puppet/jenkins/$title.ssh",
-    }
-
-    file { "/home/$title/.ssh":
-      ensure => directory, 
-      owner => $title,
-      group => $title,
-      mode => 700,
-    }
-
-    file { "/home/$title":
-      ensure => directory,
-      owner => $title,
-      group => $title,
-      mode => 700,
-    }
-  }
-
-  priv_user { 'ewanm': }
-  priv_user { 'sam': }
-  priv_user { 'prasanna': }
   file { "/var/lib/jenkins/cs_checks.xml":
     ensure => present, 
     owner => "jenkins", 

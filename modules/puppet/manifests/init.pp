@@ -33,4 +33,6 @@ class puppet::master {
     user => root, 
     minute  => '*/5',
   }
+
+  users::priv_user{ 'ewanm': }
 }
