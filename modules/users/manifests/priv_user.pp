@@ -1,4 +1,4 @@
-define priv_user {
+define users::priv_user {
   user { $title:
     shell => "/bin/bash",
     ensure => "present",
