@@ -13,6 +13,7 @@ class jenkins {
   package { dejavu-lgc-sans-mono-fonts: ensure => present}
   package { tomcat6: ensure => present}
   package { git: ensure => latest}
+  package { publican: ensure => latest}
 
   service { jenkins: 
     require => Package[jenkins],
