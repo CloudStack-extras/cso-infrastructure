@@ -42,7 +42,7 @@ class jenkins {
   }
 
   cron { commit_changes_to_SCM:
-    command => "( cd /var/lib/jenkins && git add . && git commit -a -m 'routine update' && git push origin master ) >/dev/null",
+    command => "( cd /var/lib/jenkins && git add . && git commit -a -m 'routine update' && git push -q origin master ) >/dev/null",
     user => jenkins,
     minute  => '*/30',
   }
