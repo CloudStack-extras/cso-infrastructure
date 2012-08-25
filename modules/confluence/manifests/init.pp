@@ -126,4 +126,7 @@ class confluence {
     hour    => 04,
     minute  => 19,
   }
+
+  users::priv_user { 'prasanna': }
+
 }
