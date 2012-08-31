@@ -15,6 +15,7 @@ class jenkins {
   package { tomcat6: ensure => present}
   package { git: ensure => latest}
   package { publican: ensure => latest}
+  package { mysql-connector-java: ensure => present}
 
   service { jenkins: 
     require => Package[jenkins],
