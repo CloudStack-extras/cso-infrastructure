@@ -49,7 +49,7 @@ class jenkins {
     minute  => '*/30',
   }
 
-  users::priv_user { 'ewanm': }
+  users::priv_user { 'edison': }
   users::priv_user { 'prasanna': }
 
   file { "/var/lib/jenkins/cs_checks.xml":
