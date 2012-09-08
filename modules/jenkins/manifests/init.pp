@@ -17,6 +17,7 @@ class jenkins {
   package { publican: ensure => latest}
   package { mysql-connector-java: ensure => present}
   package { maven: ensure => present} 
+  package { wget: ensure => present} 
   service { jenkins: 
     require => Package[jenkins],
     enable => true,
