@@ -7,7 +7,7 @@ class jenkins {
     gpgcheck => 0,
   }
 
-  package { jenkins: ensure => '1.484-1.1 }
+  package { jenkins: ensure => '1.484-1.1' }
   package { 'java-1.7.0-openjdk': ensure => present}
   package { 'java-1.7.0-openjdk-devel': ensure => present}
   package { dejavu-lgc-sans-fonts: ensure => present}
