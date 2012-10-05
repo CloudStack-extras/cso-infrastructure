@@ -52,6 +52,7 @@ class jenkins {
 
   users::priv_user { 'edison': }
   users::priv_user { 'prasanna': }
+  users::priv_user { 'hugot': }
 
   file { "/var/lib/jenkins/cs_checks.xml":
     ensure => present, 
