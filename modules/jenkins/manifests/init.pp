@@ -50,6 +50,17 @@ class jenkins {
     minute  => '*/30',
   }
 
+  #Packaging/Build Node Aliases 
+  host { 'build-rhel63-large':
+    ip           => '10.34.170.55',
+    host_aliases => ['build-rhel63-large', 'build-rhel'],
+  }
+
+  host { 'build-deb-large':
+    ip           => '10.72.27.91',
+    host_aliases => ['build-deb-large', 'build-debian'],
+  }
+
   users::priv_user { 'edison': }
   users::priv_user { 'prasanna': }
   users::priv_user { 'hugot': }
@@ -61,5 +72,4 @@ class jenkins {
     mode => 644,
     source => "puppet://puppet/jenkins/cs_checks.xml",
   }
-
 }
