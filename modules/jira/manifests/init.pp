@@ -127,6 +127,8 @@ class jira {
     hour    => 05,
     minute  => 32,
   }
-
   #mysql::backup{ jira }
+
+  users::priv_user { 'pradeep': }
+  users::priv_user { 'prayees': }
 }
