@@ -128,5 +128,5 @@ class confluence {
   }
 
   users::priv_user { 'prasanna': }
-
+  users::priv_user { 'rayees': }
 }
