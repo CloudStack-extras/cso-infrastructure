@@ -130,5 +130,5 @@ class jira {
   #mysql::backup{ jira }
 
   users::priv_user { 'pradeep': }
-  users::priv_user { 'prayees': }
+  users::priv_user { 'rayees': }
 }
