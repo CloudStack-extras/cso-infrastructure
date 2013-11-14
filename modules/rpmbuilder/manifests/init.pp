@@ -3,7 +3,7 @@
 class rpmbuilder {
   include maven
 
-  $linux_packages = ['wget', 'curl', 'openssh-clients', 'mysql-server', 'gcc', 'glibc-devel']
+  $linux_packages = ['wget', 'curl', 'openssh-clients', 'mysql-server', 'gcc', 'glibc-devel', 'createrepo']
   $java_packages = ['jakarta-commons-collections', 'tomcat6', 'java-1.6.0-openjdk-devel'] 
 
   package { $linux_packages:
