@@ -4,7 +4,8 @@ class rpmbuilder {
   include maven
 
   $linux_packages = ['wget', 'curl', 'git', 'openssh-clients', 'mysql-server', 'gcc', 'glibc-devel', 'createrepo', 'rpm-build']
-  $java_packages = ['jakarta-commons-collections', 'tomcat6', 'java-1.6.0-openjdk-devel'] 
+  $java_packages = ['jakarta-commons-collections', 'tomcat6', 'java-1.6.0-openjdk-devel', 'ws-commons-util'] 
+  $python_packages = ['MySQL-python', 'python-pip']
 
   group { 'jenkins':
     ensure => present,
@@ -20,7 +21,10 @@ class rpmbuilder {
     ensure => installed,
   }
   package { $java_packages: 
-  ensure => installed,
+    ensure => installed,
+  }
+  package { $python_packages: 
+    ensure => installed,
   }
   #Needed for systemvm.iso
   package { 'genisoimage':
