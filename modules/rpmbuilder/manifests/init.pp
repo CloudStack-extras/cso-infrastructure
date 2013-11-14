@@ -17,6 +17,13 @@ class rpmbuilder {
     home   => '/var/lib/jenkins',
   }
 
+  file { '/var/lib/jenkins':
+    ensure => directory,
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => 755,
+  }
+
   package { $linux_packages:
     ensure => installed,
   }
